@@ -1,24 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import {EditableText} from "monday-ui-react-core";
+import "monday-ui-react-core/tokens";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <EditableText
+          type={EditableText.types.TEXT2}
+          weight={EditableText.weights.BOLD}
+          placeholder="New report"
+          value={''}
+          onChange={(newTitle) => {
+            console.log(newTitle);
+          }}
+      />
   );
 }
 
