@@ -1,18 +1,12 @@
 import {
-    Modal,
-    Button,
-    Dialog,
-    DialogContentContainer,
-    Combobox,
-    EditableText,
-    MultiStepIndicator
+    MultiStepIndicator,
+    Dropdown
 } from "monday-ui-react-core";
 import "monday-ui-react-core/tokens";
-import {useState} from "react";
+import "./App.css";
 
 
 function App() {
-    const [isOpen, setIsOpen] = useState(false);
     const steps = [
         {
             key: "first",
@@ -27,54 +21,26 @@ function App() {
             titleText: "Third"
         }
     ]
+
+    const options = [
+        {
+            label: "Option 1",
+            value: "option1"
+        },
+        {
+            label: "Option 2",
+            value: "option2"
+        },
+        {
+            label: "Option 3",
+            value: "option3"
+        }
+    ];
+
     return <div>
-        <EditableText
-            type={EditableText.types.TEXT2}
-            weight={EditableText.weights.BOLD}
-            placeholder="New report"
-            value={''}
-            onChange={(newTitle) => {
-                console.log(newTitle);
-            }}/>
         <MultiStepIndicator size="compact"
                             steps={steps}/>
-        <Button onClick={() => setIsOpen(true)}>Open modal</Button>
-        <Dialog zIndex={2000000} position={Dialog.positions.BOTTOM}
-                content={<DialogContentContainer>
-                    <Combobox optionClassName="insight-combobox"
-                              size={Combobox.sizes.SMALL}
-                              maxOptionsWithoutScroll={5}
-                              onClick={(value) => console.log(value)}
-                              placeholder="Search"
-                              options={[
-                                  {id: "1", label: "One"},
-                                  {id: "2", label: "Two"},
-                                  {id: "3", label: "Three"}
-                              ]}/>
-                </DialogContentContainer>}
-                showTrigger={[Dialog.hideShowTriggers.CLICK]}
-                hideTrigger={[Dialog.hideShowTriggers.CLICK, Dialog.hideShowTriggers.CLICK_OUTSIDE]}>
-            <Button>Open dialog</Button>
-        </Dialog>
-        <Modal title="test" onClose={() => setIsOpen(false)} show={isOpen}>
-            <Dialog zIndex={2000000} position={Dialog.positions.BOTTOM}
-                    content={<DialogContentContainer>
-                        <Combobox optionClassName="insight-combobox"
-                                  size={Combobox.sizes.SMALL}
-                                  maxOptionsWithoutScroll={5}
-                                  onClick={(value) => console.log(value)}
-                                  placeholder="Search"
-                                  options={[
-                                      {id: "1", label: "One"},
-                                      {id: "2", label: "Two"},
-                                      {id: "3", label: "Three"}
-                                  ]}/>
-                    </DialogContentContainer>}
-                    showTrigger={[Dialog.hideShowTriggers.CLICK]}
-                    hideTrigger={[Dialog.hideShowTriggers.CLICK, Dialog.hideShowTriggers.CLICK_OUTSIDE]}>
-                <Button>Open dialog</Button>
-            </Dialog>
-        </Modal>
+        <Dropdown size={Dropdown.sizes.MEDIUM} options={options} multi/>
     </div>;
 }
 
